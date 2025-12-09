@@ -259,4 +259,103 @@ export const snippets = [
   </body>
 </html>`,
   },
+  {
+    id: "buttons-card",
+    title: "Buttons Card",
+    category: "layout",
+    type: "block",
+    tags: ["Buttons", "Blocks", "Card", "Demo", "Center"],
+    html: `<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Buttons Card Demo</title>
+    <style>
+      /* Optional: smooth font rendering */
+      html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-white">
+    <section class="min-h-screen flex items-center justify-center px-3">
+      <div class="w-full max-w-sm rounded-xl shadow border border-gray-300 bg-white p-3">
+        <div class="flex flex-col items-center gap-2">
+          <button type="button" class="inline-flex items-center justify-center rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+            Primary
+          </button>
+          <button type="button" class="inline-flex items-center justify-center rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+            Secondary
+          </button>
+          <button type="button" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+            Outline
+          </button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+`,
+    /* PUBLIC_INTERFACE
+     * Buttons Card: full-page centered card showcasing button variants; ideal as a block demo.
+     */
+  },
+  {
+    id: "buttons-inline",
+    title: "Buttons Inline",
+    category: "forms",
+    type: "component",
+    tags: ["Buttons", "Inline", "Toolbar", "CTA"],
+    html: `<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Buttons Inline</title>
+  </head>
+  <body class="bg-white p-6">
+    <div class="flex flex-wrap items-center gap-3">
+      <button type="button" class="inline-flex items-center justify-center rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+        Primary
+      </button>
+      <button type="button" class="inline-flex items-center justify-center rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+        Secondary
+      </button>
+      <button type="button" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+        Outline
+      </button>
+    </div>
+  </body>
+</html>
+`,
+    /* PUBLIC_INTERFACE
+     * Buttons Inline: horizontal button set suitable for toolbars or action rows.
+     */
+  },
+  {
+    id: "button-group-component",
+    title: "Button Group Component",
+    category: "forms",
+    type: "component",
+    tags: ["Buttons", "Group", "Component", "Card"],
+    html: `<!-- Button Group Component -->
+<div class="w-full max-w-sm rounded-xl shadow border border-gray-300 bg-white p-3">
+  <div class="flex flex-col items-center gap-2">
+    <button type="button" class="inline-flex items-center justify-center rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+      Primary
+    </button>
+    <button type="button" class="inline-flex items-center justify-center rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+      Secondary
+    </button>
+    <button type="button" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+      Outline
+    </button>
+  </div>
+</div>
+`,
+    /* PUBLIC_INTERFACE
+     * Button Group Component: drop-in component markup for embedding in layouts.
+     */
+  },
 ];
