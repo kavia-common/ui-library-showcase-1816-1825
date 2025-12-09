@@ -1,13 +1,47 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ocean Professional App base */
+:root {
+  --ocean-primary: #2563EB;
+  --ocean-secondary: #F59E0B;
+  --ocean-surface: #ffffff;
+  --ocean-bg: #f9fafb;
+  --ocean-text: #111827;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-oceanBg text-oceanText antialiased;
+}
+
+.ocean-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply bg-surface rounded-xl shadow-soft border border-gray-100;
+}
+
+.badge {
+  @apply inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-50 text-blue-700;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition-colors;
+}
+.btn-primary {
+  @apply bg-primary text-white hover:bg-blue-600;
+}
+.btn-secondary {
+  @apply bg-secondary text-white hover:bg-amber-600;
+}
+
+/* Sidebar utilities */
+.sidebar {
+  @apply sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto pr-2;
 }

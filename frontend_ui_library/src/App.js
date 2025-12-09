@@ -1,48 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import ComponentsLibrary from "./pages/ComponentsLibrary";
+import BlocksHub from "./pages/BlocksHub";
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ * App sets up routing and shared layout.
+ */
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/components" element={<ComponentsLibrary />} />
+            <Route path="/blocks" element={<BlocksHub />} />
+          </Routes>
+        </main>
+        <footer className="mt-10 border-t border-gray-200">
+          <div className="ocean-container py-6 text-sm text-gray-500">
+            <span>© {new Date().getFullYear()} UI Library • Ocean Professional</span>
+          </div>
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 
