@@ -14,6 +14,7 @@ export default function ComponentsLibrary() {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState("all");
   const [view, setView] = useState("components"); // 'components' | 'snippets'
+  const [componentFilter, setComponentFilter] = useState(null); // snippet.id when selecting a component
 
   const mergedCategories = useMemo(() => {
     // Keep existing categories and ensure consistency with snippet categories
@@ -39,18 +40,35 @@ export default function ComponentsLibrary() {
   }, []);
 
   const filteredSnippets = useMemo(() => {
+    // If specific component selection exists, filter to that snippet only
+    if (componentFilter) {
+      return snippetComponents.filter((s) => s.id === componentFilter);
+    }
     return snippetComponents.filter((s) => {
       const catMatch = cat === "all" ? true : s.category === cat;
       const q = query.trim().toLowerCase();
       const searchable = [s.title, ...(s.tags || [])].join(" ").toLowerCase();
       return catMatch && (!q || searchable.includes(q));
     });
-  }, [query, cat, snippetComponents]);
+  }, [query, cat, snippetComponents, componentFilter]);
 
   return (
     <div className="ocean-container py-6">
       <div className="flex gap-6">
-        <Sidebar categories={mergedCategories} active={cat} onChange={setCat} />
+        <Sidebar
+          categories={mergedCategories}
+          active={componentFilter ? `component:${componentFilter}` : cat}
+          onChange={(val) => {
+            if (typeof val === "string" && val.startsWith("component:")) {
+              const id = val.split(":")[1];
+              setComponentFilter(id);
+              setView("snippets");
+            } else {
+              setComponentFilter(null);
+              setCat(val);
+            }
+          }}
+        />
         <main className="flex-1">
           <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
             <div className="flex items-center gap-2">
@@ -74,7 +92,9 @@ export default function ComponentsLibrary() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder={`Search ${view === "snippets" ? "snippets" : "components"}...`}
+              placeholder={`Search ${
+                view === "snippets" ? (componentFilter ? "selected snippet" : "snippets") : "components"
+              }...`}
               className="w-64 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
             />
           </div>
@@ -96,6 +116,11 @@ export default function ComponentsLibrary() {
               {filteredSnippets.map((snip) => (
                 <SnippetCard key={snip.id} snippet={snip} />
               ))}
+              {filteredSnippets.length === 0 && (
+                <div className="text-sm text-gray-600">
+                  No snippets match your filters.
+                </div>
+              )}
             </div>
           )}
         </main>

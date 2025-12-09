@@ -14,6 +14,7 @@ export default function BlocksHub() {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState("all");
   const [view, setView] = useState("blocks"); // 'blocks' | 'snippets'
+  const [componentFilter, setComponentFilter] = useState(null);
 
   const mergedCategories = useMemo(() => {
     const all = new Map();
@@ -39,18 +40,37 @@ export default function BlocksHub() {
   );
 
   const filteredSnippetBlocks = useMemo(() => {
+    // Component filter applies only to component-type snippets; since this page shows block-type snippets,
+    // when a component is selected, there will be no matches. We'll simply switch to 'snippets' view (already done)
+    // and show zero results to indicate specificity.
+    if (componentFilter) {
+      return [];
+    }
     return snippetBlocks.filter((s) => {
       const catMatch = cat === "all" ? true : s.category === cat;
       const q = query.trim().toLowerCase();
       const searchable = [s.title, ...(s.tags || [])].join(" ").toLowerCase();
       return catMatch && (!q || searchable.includes(q));
     });
-  }, [query, cat, snippetBlocks]);
+  }, [query, cat, snippetBlocks, componentFilter]);
 
   return (
     <div className="ocean-container py-6">
       <div className="flex gap-6">
-        <Sidebar categories={mergedCategories} active={cat} onChange={setCat} />
+        <Sidebar
+          categories={mergedCategories}
+          active={componentFilter ? `component:${componentFilter}` : cat}
+          onChange={(val) => {
+            if (typeof val === "string" && val.startsWith("component:")) {
+              const id = val.split(":")[1];
+              setComponentFilter(id);
+              setView("snippets");
+            } else {
+              setComponentFilter(null);
+              setCat(val);
+            }
+          }}
+        />
         <main className="flex-1">
           <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
             <div className="flex items-center gap-2">
@@ -96,6 +116,11 @@ export default function BlocksHub() {
               {filteredSnippetBlocks.map((snip) => (
                 <SnippetCard key={snip.id} snippet={snip} />
               ))}
+              {filteredSnippetBlocks.length === 0 && (
+                <div className="text-sm text-gray-600">
+                  No snippet blocks match your filters.
+                </div>
+              )}
             </div>
           )}
         </main>
