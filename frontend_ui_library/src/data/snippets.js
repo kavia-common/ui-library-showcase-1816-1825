@@ -504,4 +504,21 @@ export const snippets = [
     tags: ["header", "search", "navbar"],
     html: `<!doctype html><html><head><meta charset="utf-8"/><script src="https://cdn.tailwindcss.com"></script></head><body class="min-h-screen bg-gray-50"><header class="w-full bg-white border-b border-gray-200"><div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-3"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-md bg-gradient-to-br from-blue-500 to-amber-400"></div><span class="font-semibold text-gray-900">UI Library</span></div><div class="flex-1 max-w-md"><div class="relative"><svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l3.387 3.387a1 1 0 01-1.414 1.414l-3.387-3.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z" clip-rule="evenodd" /></svg><input placeholder="Search..." class="w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/></div></div><div class="hidden md:flex items-center gap-4 text-sm"><a href="#" class="text-gray-700 hover:text-gray-900">Docs</a><a href="#" class="text-gray-700 hover:text-gray-900">GitHub</a></div></div></header><main class="max-w-6xl mx-auto p-6"><div class="rounded-lg border border-dashed border-gray-300 bg-white p-8 text-gray-500 text-sm">Content…</div></main></body></html>`,
   },
+
+  {
+    id: "buttons-primary-secondary-outline-play",
+    title: "Buttons — Primary/Secondary/Outline (Play-ready)",
+    category: "Buttons",
+    type: "component",
+    tags: ["buttons","primary","secondary","outline","play"],
+    html: `<section class="min-h-screen bg-gray-50 p-6">
+  <div class="bg-white rounded-xl shadow border border-gray-200 p-4">
+    <div class="flex gap-3">
+      <button class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-blue-600 text-white hover:brightness-110">Primary</button>
+      <button class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-amber-500 text-white hover:brightness-110">Secondary</button>
+      <button class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-50">Outline</button>
+    </div>
+  </div>
+</section>`
+  },
 ];
